@@ -37,6 +37,7 @@ public class GetUserDetails {
 		try{
 			System.out.println("\nEjecutando query...");
 			
+			
 			con = DBConnection.getConnection();
 			
 			stmt = con.createStatement();
