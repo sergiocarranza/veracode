@@ -40,7 +40,7 @@ public class GetUserDetails {
 			con = DBConnection.getConnection();
 			
 			stmt = con.createStatement();
-			String query = "select name, country, password from users where email = '"+id+"' and password='"+pwd+"'";
+			String query = "select name, country, balance from users where email = '"+id+"' and password='"+pwd+"'";
 			System.out.println("Executing: '"+ query + "'");
 			
 			rs = stmt.executeQuery(query);
@@ -48,7 +48,7 @@ public class GetUserDetails {
 			while(rs.next()){
 				a++;
 				//System.out.println("");
-				System.out.println("\nNombre="+rs.getString("name")+", País="+rs.getString("country")+", Clave="+rs.getString("password"));
+				System.out.println("\nNombre="+rs.getString("name")+", País="+rs.getString("country")+", Saldo="+rs.getString("balance"));
 				//System.out.println("");
 			}
 			if (a==0) {
@@ -66,6 +66,7 @@ public class GetUserDetails {
 				con.close();
 			}
 		// carse03@ca.com' or '1'='1
+		// carse03@ca.com' or '1'='1;update Users set balance=400;
 	}
 
 }
