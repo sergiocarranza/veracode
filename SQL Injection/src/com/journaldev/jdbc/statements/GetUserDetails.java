@@ -15,6 +15,7 @@ public class GetUserDetails {
 		
 		//read user entered data
 		Scanner scanner = new Scanner(System.in);
+		
 		System.out.println("Por favor, ingrese email: ");
 		String id = scanner.nextLine();
 		System.out.println("Correo="+id);
@@ -22,7 +23,7 @@ public class GetUserDetails {
 		String pwd = scanner.nextLine();
 		
 		if (pwd.length() == 0)
-			System.out.println("-- blank password --");
+			System.out.println("-- clave en blanco --");
 		printUserData(id,pwd);
 		
 		scanner.close();
@@ -35,21 +36,21 @@ public class GetUserDetails {
 		Statement stmt = null;
 		ResultSet rs = null;
 		try{
-			System.out.println("\nEjecutando query...");
+			System.out.println("\nEjecutando consultas...");
 			
-			
+
 			con = DBConnection.getConnection();
 			
 			stmt = con.createStatement();
 			String query = "select name, country, balance from users where email = '"+id+"' and password='"+pwd+"'";
-			System.out.println("Executing: '"+ query + "'");
-			
+			System.out.println("Ejecutando: '"+ query + "'");
 			rs = stmt.executeQuery(query);
+			
 			int a=0;
 			while(rs.next()){
 				a++;
 				//System.out.println("");
-				System.out.println("\nNombre="+rs.getString("name")+", País="+rs.getString("country")+", Saldo="+rs.getString("balance"));
+				System.out.println("\nName="+rs.getString("name")+", Country="+rs.getString("country")+", Saldo="+rs.getString("balance"));
 				//System.out.println("");
 			}
 			if (a==0) {
@@ -67,7 +68,6 @@ public class GetUserDetails {
 				con.close();
 			}
 		// carse03@ca.com' or '1'='1
-		// carse03@ca.com' or '1'='1;update Users set balance=400;
 	}
 
 }
